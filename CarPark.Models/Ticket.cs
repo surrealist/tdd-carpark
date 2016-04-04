@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace CarPark.Models {
   public class Ticket {
 
+    public int Id { get; set; }
+
     public string PlateNo { get; set; }
     public DateTime DateIn { get; set; }
     public DateTime? DateOut { get; set; }
