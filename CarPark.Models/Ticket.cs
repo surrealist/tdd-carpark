@@ -9,11 +9,18 @@ namespace CarPark.Models {
 
     public string PlateNo { get; set; }
     public DateTime DateIn { get; set; }
-    public DateTime DateOut { get; set; }
+    public DateTime? DateOut { get; set; }
 
-    public decimal ParkingFee {
+    public decimal? ParkingFee {
       get {
-        TimeSpan ts = DateOut - DateIn;
+        if (DateOut == null) {
+          return null;
+        }
+        if (DateOut < DateIn) {
+          throw new Exception("Invalid date");
+        }
+
+        TimeSpan ts = DateOut.Value - DateIn;
 
         ts = ts.Add(TimeSpan.FromMinutes(-15));
 
